@@ -7,6 +7,11 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "centos_6.5_64"
   
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "dev"
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+  end
+  
   config.vm.provision "shell", inline: <<SCRIPT
 echo "provisioning..."
 
